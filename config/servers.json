@@ -1,0 +1,10 @@
+[
+  {
+    "folder": "logs/dev-api",
+    "host": "dev.myplazze.com",
+    "username": "ubuntu",
+    "privateKey": "keys/dev.pem",
+    "remoteLogDir": "/var/www/myplazze-api/current/storage/logs"
+  }
+]
+
