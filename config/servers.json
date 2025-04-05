@@ -1,10 +1,34 @@
 [
   {
-    "folder": "logs/dev-api",
+    "folder": "dev-api",
     "host": "dev.myplazze.com",
     "username": "ubuntu",
     "privateKey": "keys/dev.pem",
-    "remoteLogDir": "/var/www/myplazze-api/current/storage/logs"
+    "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
+    "lastSync": "2025-04-05"
+  },
+  {
+    "folder": "prod-core",
+    "host": "myplazze.com",
+    "username": "ubuntu",
+    "privateKey": "keys/prod.pem",
+    "remoteLogDir": "/var/www/myplazze.com/current/storage/logs",
+    "lastSync": "2025-04-05"
+  },
+  {
+    "folder": "prod-api",
+    "host": "api.myplazze.com",
+    "username": "ubuntu",
+    "privateKey": "keys/prod.pem",
+    "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
+    "lastSync": "2025-04-05"
+  },
+  {
+    "folder": "prod-worker",
+    "host": "worker.myplazze.com",
+    "username": "ubuntu",
+    "privateKey": "keys/prod.pem",
+    "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
+    "lastSync": "2025-04-05"
   }
 ]
-

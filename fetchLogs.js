@@ -4,26 +4,36 @@ const path = require('path');
 
 const servers = JSON.parse(fs.readFileSync('config/servers.json', 'utf8'));
 
-async function fetchLogs() {
+async function main() {
    const client = new Client();
 
    for (const server of servers) {
-
       const config = {
          folder: server.folder,
          host: server.host,
          port: 22,
+         lastSync: server.lastSync,
          username: server.username,
          privateKey: fs.readFileSync(server.privateKey),
          readyTimeout: 20000
       };
 
-      // console.log(config);
-      await fetchLog(client, config, server.remoteLogDir, server.folder);
+      if (!fs.existsSync('./logs')) {
+         fs.mkdirSync('./logs');
+      }
+
+      await fetchServerLogs(client, config, server.remoteLogDir, server.folder);
+
+      console.log(`Finished downloading logs from ${server.host}`);
+      const date = new Date();
+      const lastSyncDate = date.toISOString().split('T')[0];
+      server.lastSync = lastSyncDate;
+      fs.writeFileSync('config/servers.json', JSON.stringify(servers, null, 2));
+
    }
 }
 
-async function fetchLog(client, config, remoteLogDir, localFolder) {
+async function fetchServerLogs(client, config, remoteLogDir, localFolder) {
    try {
       // Establish SSH connection
       await connectSSH(client, config);
@@ -34,7 +44,7 @@ async function fetchLog(client, config, remoteLogDir, localFolder) {
       const remoteFiles = await listRemoteFiles(sftp, remoteLogDir);
 
       // Ensure local folder exists
-      const localDir = path.join('./', localFolder);
+      const localDir = path.join('./logs', localFolder);
       if (!fs.existsSync(localDir)) {
          fs.mkdirSync(localDir);
       }
@@ -43,6 +53,24 @@ async function fetchLog(client, config, remoteLogDir, localFolder) {
       for (const remoteFile of remoteFiles) {
          if (!remoteFile.startsWith('laravel')) 
             continue;
+
+         //If there is a last sync only donwload files after or equal to the last sync
+         //File names contain the date in the format YYYY-MM-DD
+         if (config.lastSync) {
+            const fileDate = remoteFile.match(/(\d{4}-\d{2}-\d{2})/)?.[0];
+
+            if(!fileDate) {
+               console.log(`Skipping ${remoteFile} as it does not match the date format`);
+               continue;
+            }
+
+            const lastSyncDate = config.lastSync;
+
+            if (fileDate < lastSyncDate) {
+               // console.log(`Skipping ${remoteFile} as it is older than the last sync date`);
+               continue;
+            }
+         }
 
          const remotePath = path.join(remoteLogDir, remoteFile);
          const localPath = path.join(localDir, remoteFile);
@@ -115,5 +143,5 @@ function downloadFile(sftp, remotePath, localPath) {
    });
 }
 
-fetchLogs();
+main();
 
