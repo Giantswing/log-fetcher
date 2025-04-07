@@ -15,7 +15,7 @@ A Node.js script to fetch and sync Laravel log files from remote servers via SSH
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/log-fetcher.git
+git clone https://github.com/Giantswing/log-fetcher.git 
 cd log-fetcher
 ```
 
