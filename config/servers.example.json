@@ -1,0 +1,16 @@
+[
+  {
+    "folder": "folder-name1",
+    "host": "host1",
+    "username": "ubuntu",
+    "privateKey": "keys/file.pem",
+    "remoteLogDir": "/var/www/project/current/storage/logs",
+  },
+  {
+    "folder": "folder-name2",
+    "host": "host2",
+    "username": "ubuntu",
+    "privateKey": "keys/file2.pem",
+    "remoteLogDir": "/var/www/project2/current/storage/logs",
+  },
+]

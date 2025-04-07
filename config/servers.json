@@ -5,7 +5,7 @@
     "username": "ubuntu",
     "privateKey": "keys/dev.pem",
     "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
-    "lastSync": "2025-04-05"
+    "lastSync": "2025-04-07"
   },
   {
     "folder": "prod-core",
@@ -13,7 +13,7 @@
     "username": "ubuntu",
     "privateKey": "keys/prod.pem",
     "remoteLogDir": "/var/www/myplazze.com/current/storage/logs",
-    "lastSync": "2025-04-05"
+    "lastSync": "2025-04-07"
   },
   {
     "folder": "prod-api",
@@ -21,7 +21,7 @@
     "username": "ubuntu",
     "privateKey": "keys/prod.pem",
     "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
-    "lastSync": "2025-04-05"
+    "lastSync": "2025-04-07"
   },
   {
     "folder": "prod-worker",
@@ -29,6 +29,6 @@
     "username": "ubuntu",
     "privateKey": "keys/prod.pem",
     "remoteLogDir": "/var/www/myplazze-api/current/storage/logs",
-    "lastSync": "2025-04-05"
+    "lastSync": "2025-04-07"
   }
 ]

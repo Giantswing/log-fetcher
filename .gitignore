@@ -1,3 +1,4 @@
 /node_modules/*
 /logs/*
 /keys/*
+/servers/servers.json
